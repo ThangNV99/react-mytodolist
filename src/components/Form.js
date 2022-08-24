@@ -1,7 +1,10 @@
 import React from "react";
+import { useRef } from "react";
 
 
 const Form = ({inputText, setInputText, todos, setTodos, setStatus}) => {
+  const inputRef = useRef();
+
   const inputTextHandler = (e) => {
     setInputText(e.target.value)
   }
@@ -16,6 +19,7 @@ const Form = ({inputText, setInputText, todos, setTodos, setStatus}) => {
       }
     ]);
     setInputText("");
+    inputRef.current.focus();
   }
   const statusHandler = (e) => {
     setStatus(e.target.value)
@@ -24,6 +28,7 @@ const Form = ({inputText, setInputText, todos, setTodos, setStatus}) => {
   return (
     <form>
       <input 
+        ref={inputRef}
         value={inputText}
         onChange={inputTextHandler} 
         type="text" 
